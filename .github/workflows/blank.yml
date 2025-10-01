@@ -16,7 +16,7 @@ jobs:
           # Count commits between base and head
           COMMITS=$(git log --oneline ${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }})
           COMMIT_COUNT=$(echo "$COMMITS" | wc -l)
-          COMMIT_MSG=$(echo "$COMMITS" | head -1)
+          COMMIT_MSG=$(git log -1 --pretty=format:%s ${{ github.event.pull_request.head.sha }})
           
           echo "=== COMMIT VALIDATION ==="
           echo "Commit count: $COMMIT_COUNT"
